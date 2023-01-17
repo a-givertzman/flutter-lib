@@ -1,6 +1,6 @@
 name: hmi_core
 description: A Flutter core package of hmi_widgets package which is helps to visualize states, values, changes and other artefacts from technological processes.
-version: 0.0.23
+version: 0.1.23
 homepage: https://github.com/a-givertzman/hmi_core
 
 environment:
