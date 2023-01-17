@@ -3,8 +3,6 @@ import 'package:hmi_core/src/core/entities/ds_data_class.dart';
 import 'package:hmi_core/src/core/entities/ds_data_type.dart';
 import 'package:hmi_core/src/core/entities/ds_status.dart';
 import 'package:hmi_core/src/core/entities/ds_timestamp.dart';
-import 'package:hmi_core/src/core/error/failure.dart';
-import 'package:hmi_core/src/core/log/log.dart';
 
 ///
 /// Команда управления передаваемая в DataServer

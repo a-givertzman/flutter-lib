@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter_test/flutter_test.dart';
 import 'package:hmi_core/hmi_core.dart';
 
 DsCommand getCommandWith({
@@ -35,9 +34,9 @@ String getStringifiedCommandWithValue(dynamic value, DsTimeStamp timestamp) {
   });
 }
 
-void testIfThrows(Map<String,dynamic> map) {
-  expect(
-    () => DsCommand.fromJson(json.encode(map)), 
-    throwsA(isA<Failure>()),
-  );
-}
+// void testIfThrows(Map<String,dynamic> map) {
+//   expect(
+//     () => DsCommand.fromJson(json.encode(map)), 
+//     throwsA(isA<Failure>()),
+//   );
+// }
