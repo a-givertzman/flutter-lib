@@ -56,7 +56,7 @@ jobs:
         with:
           # artifacts: "./build/linux/x64/release/bundle/release.zip"
           tag: internal_v0.0.${{ github.run_number }}
-          # token: ${{ secrets.RELEASES_TOKEN }}
+          token: ${{ secrets.RELEASES_TOKEN }}
 
       # - name: Show downloads
       #   uses: actions/upload-artifact@v3
