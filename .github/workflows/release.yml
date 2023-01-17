@@ -55,7 +55,7 @@ jobs:
           echo "on repositiry: ${{ github.repository }}"
           git config --global user.name 'anton.lobanov'
           git config --global user.email 'lobanov.anton@gmail.com'
-          git remote set-url origin https://x-access-token:${{ secrets.RELEASES_TOKEN }}@github.com/${{ github.repository }}
+          git remote set-url origin https://a-givertzman:${{ secrets.RELEASES_TOKEN }}@github.com/${{ github.repository }}
           git commit -am "Automated version update to 0.0.${{ github.run_number }}"
           git push
 
