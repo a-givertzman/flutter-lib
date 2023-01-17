@@ -52,6 +52,7 @@ jobs:
 
       - name: Commit new version (0.0.${{ github.run_number }})
         run: |
+          echo "on repositiry: $GITHUB_REPOSITORY"
           git config --global user.name 'anton.lobanov'
           git config --global user.email 'lobanov.anton@gmail.com'
           git remote set-url origin https://x-access-token:${{ secrets.RELEASES_TOKEN }}@github.com/$GITHUB_REPOSITORY
