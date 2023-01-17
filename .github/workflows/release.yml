@@ -6,7 +6,6 @@ name: Build release
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    branches: [ "master" ]
 
 jobs:
   build:
