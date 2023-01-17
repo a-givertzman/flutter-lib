@@ -26,7 +26,7 @@ jobs:
         run: flutter clean
 
       - name: Install dependencies
-        run: flutter pub get
+        run: flutter pub upgrade
 
       - name: Analyze project
         run: flutter analyze
