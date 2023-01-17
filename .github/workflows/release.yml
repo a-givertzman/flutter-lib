@@ -48,7 +48,7 @@ jobs:
         run: |
           echo "old version: "
           echo "new version: ${{ github.run_number }}"
-          sed --debug -i -r "s/^version:\s+[0-9]+\.[0-9]+\.[0-9]+\s*$/$\${{ github.run_number }}/g" ./pubspec.yaml
+          sed --debug -i -r "s/^version:\s+[0-9]+\.[0-9]+\.[0-9]+\s*$/${{ github.run_number }}/g" ./pubspec.yaml
 
       - name: Commit new version (${{ github.run_number }})
         run: |
