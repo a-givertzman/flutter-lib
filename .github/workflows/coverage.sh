@@ -22,7 +22,7 @@ compare() {
 }
 
 
-path="coverage/lcov.info"
+path="./coverage/lcov.info"
 while IFS= read -r line
 do
     if [[ $line == 'SF:'* ]]; then
@@ -40,7 +40,7 @@ do
         if compare $currentCov '>' $coverageFactor; then
             echo -e "${GREEN}$currentCov\t|\t$currentFile${NC}";
         else
-            echo -e "${RED}$currentCov\t|\t$currentFile${NC}";
+            echo -e "${RED}$currentCov\t|\t$currentFile${NC}\t<<< coverage mas be more then $coverageFactor%";
         fi
     fi
 done < "$path"

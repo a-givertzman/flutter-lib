@@ -31,8 +31,10 @@ jobs:
       - name: Install dependencies
         run: flutter pub upgrade
 
-      - name: Analyze project
-        run: flutter analyze
+      - name: Analyze test coverage
+        run: |
+          chmod +x ./.github/workflows/coverage.sh
+          ./.github/workflows/coverage.sh
 
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
