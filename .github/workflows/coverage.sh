@@ -4,6 +4,7 @@ RED='\033[0;31m'          # Red
 GREEN='\033[0;32m'        # Green
 
 coverageFactor=30 # minimum percentage of unit tests coverage for each file
+coverageResults=()
 
 flutter test --coverage
 
@@ -38,9 +39,14 @@ do
     if [[ $line == 'end_of_record' ]]; then
         currentCov=$(printf %.2f\\n "$((10000 *   $currentLH/$currentLF))e-2")
         if compare $currentCov '>' $coverageFactor; then
-            echo -e "${GREEN}$currentCov\t|\t$currentFile${NC}";
+            message=$(echo -e "${GREEN}$currentCov\t|\t$currentFile${NC}")
+            # coverageResults+=( $(echo -e "${GREEN}$currentCov\t|\t$currentFile${NC}") )
+            echo "::notice ok: $message::Test coverage level"
         else
-            echo -e "${RED}$currentCov\t|\t$currentFile${NC}\t<<< coverage mas be more then $coverageFactor%";
+            message=$(echo -e "${RED}$currentCov\t|\t$currentFile${NC}\t<<< coverage mas be more then $coverageFactor%")
+            echo "::notice low: $message::Test coverage level"
+            # coverageResults+=( $(echo -e "${RED}$currentCov\t|\t$currentFile${NC}\t<<< coverage mas be more then $coverageFactor%") )
         fi
+        echo $message
     fi
 done < "$path"

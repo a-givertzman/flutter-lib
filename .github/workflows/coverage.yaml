@@ -1,6 +1,6 @@
 # This is a basic workflow to help get unit test coverage factor for each file
 
-name: Test coverage
+name: Analyze test coverage
 
 # Controls when the workflow will run
 on:
@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  coverage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -36,11 +36,15 @@ jobs:
           chmod +x ./.github/workflows/coverage.sh
           ./.github/workflows/coverage.sh
 
+      outputs:
+        output1: ${{ steps.step1.outputs.test }}
+        output2: ${{ steps.step2.outputs.test }}
+
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
       # want to change this to 'flutter test'.
-      - name: Run tests
-        run: flutter test
+      # - name: Run tests
+      #   run: flutter test
 
       # - name: Configure linux desctop
       #   run: flutter config --enable-linux-desktop
