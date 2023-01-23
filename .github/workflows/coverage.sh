@@ -5,7 +5,7 @@ GREEN='\033[0;32m'        # Green
 
 coverageFactor=30 # minimum percentage of unit tests coverage for each file
 
-# flutter test --coverage
+flutter test --coverage
 
 # Get version of GNU tool
 compare() {
