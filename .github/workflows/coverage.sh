@@ -40,10 +40,11 @@ do
         currentCov=$(printf %.2f\\n "$((10000 *   $currentLH/$currentLF))e-2")
         if compare $currentCov '>' $coverageFactor; then
             message=$(echo -e "${GREEN}$currentCov\t|\t$currentFile${NC}")
-            echo "::notice::Test coverage level:ok\t$message"
+            echo "::notice::coverage level: ok\t$currentCov\t|\t$currentFile$"
         else
             message=$(echo -e "${RED}$currentCov\t|\t$currentFile${NC}\t<<< coverage mas be more then $coverageFactor%")
-            echo "::notice::Test coverage level:low\t$message"
+            echo "::warning::coverage level: low\t$currentCov\t|\t$currentFile$"
+            # echo "::notice::Test coverage level:low\t$message"
         fi
         coverageResults+=( $message )
         echo $message
