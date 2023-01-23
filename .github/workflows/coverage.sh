@@ -40,13 +40,13 @@ do
         currentCov=$(printf %.2f\\n "$((10000 *   $currentLH/$currentLF))e-2")
         if compare $currentCov '>' $coverageFactor; then
             message=$(echo -e "${GREEN}$currentCov\t|\t$currentFile${NC}")
-            # coverageResults+=( $(echo -e "${GREEN}$currentCov\t|\t$currentFile${NC}") )
             echo "::notice ok: $message::Test coverage level"
         else
             message=$(echo -e "${RED}$currentCov\t|\t$currentFile${NC}\t<<< coverage mas be more then $coverageFactor%")
             echo "::notice low: $message::Test coverage level"
-            # coverageResults+=( $(echo -e "${RED}$currentCov\t|\t$currentFile${NC}\t<<< coverage mas be more then $coverageFactor%") )
         fi
+        coverageResults+=( $message )
         echo $message
     fi
 done < "$path"
+echo "results=$coverageResults" >> $GITHUB_OUTPUT

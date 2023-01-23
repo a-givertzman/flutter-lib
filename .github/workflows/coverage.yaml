@@ -11,6 +11,10 @@ on:
 
 jobs:
   coverage:
+    outputs:
+      output1: ${{ steps.coverage.outputs.results }}
+      # output2: ${{ steps.step2.outputs.test }}
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -32,13 +36,10 @@ jobs:
         run: flutter pub upgrade
 
       - name: Analyze test coverage
+        id: coverage
         run: |
           chmod +x ./.github/workflows/coverage.sh
           ./.github/workflows/coverage.sh
-
-      outputs:
-        output1: ${{ steps.step1.outputs.test }}
-        output2: ${{ steps.step2.outputs.test }}
 
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
