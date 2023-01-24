@@ -5,6 +5,7 @@ GREEN='\033[0;32m'        # Green
 
 coverageFactor=30 # minimum percentage of unit tests coverage for each file
 coverageResults=()
+coverageExitStatus=0
 
 # flutter test --coverage
 
@@ -40,18 +41,17 @@ do
         currentCov=$(printf %.2f\\n "$((10000 *   $currentLH/$currentLF))e-2")
         if compare $currentCov '>' $coverageFactor; then
             message=$(echo -e "${GREEN}$currentCov\t|\t$currentFile${NC}")
-            echo "::notice::coverage level: ok\t$currentCov\t|\t$currentFile$"
+            echo "::notice file=$currentFile,title=Good coverage level::$currentCov%"
         else
-            message=$(echo -e "${RED}$currentCov\t|\t$currentFile${NC}\t<<< coverage mas be more then $coverageFactor%")
-            echo "::warning::coverage level: low\t$currentCov\t|\t$currentFile$"
-            # echo "::notice::Test coverage level:low\t$message"
+            message=$(echo -e "${RED}$currentCov\t|\t$currentFile${NC}")
+            echo "::error file=$currentFile,title=Low coverage level::$currentCov% < $coverageFactor%"
+            ((coverageExitStatus=coverageExitStatus+1))
         fi
         coverageResults+=( $message )
         echo $message
     fi
 done < "$path"
 # echo "results=$coverageResults" >> $GITHUB_OUTPUT
-coverageExitStatus=1
 if [[ !coverageExitStatus != 0 ]]; then 
     echo "#### Some files are not enough covered by unit tests!" >> $GITHUB_STEP_SUMMARY
     echo "Please check details on your local machine using command: `flutter test --coverage`" >> $GITHUB_STEP_SUMMARY
