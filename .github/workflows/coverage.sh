@@ -28,7 +28,7 @@ path="./coverage/lcov.info"
 while IFS= read -r line
 do
     if [[ $line == 'SF:'* ]]; then
-        currentFile=$line
+        currentFile=$(sed -r 's/^SF:(.+)/\1/' <<< $line)
         currentCov=0
     fi
     if [[ $line == 'LF:'* ]]; then
@@ -53,6 +53,6 @@ do
 done < "$path"
 # echo "results=$coverageResults" >> $GITHUB_OUTPUT
 if [[ !coverageExitStatus != 0 ]]; then 
-    echo "#### Some files are not enough covered by unit tests!" >> $GITHUB_STEP_SUMMARY
+    echo "#### 🔴 Some files are not enough covered by unit tests!" >> $GITHUB_STEP_SUMMARY
     echo 'Please check details on your local machine using command: `flutter test --coverage`.' >> $GITHUB_STEP_SUMMARY
 fi
