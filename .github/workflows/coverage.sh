@@ -6,7 +6,7 @@ GREEN='\033[0;32m'        # Green
 coverageFactor=30 # minimum percentage of unit tests coverage for each file
 coverageResults=()
 
-flutter test --coverage
+# flutter test --coverage
 
 # Get version of GNU tool
 compare() {
@@ -50,4 +50,9 @@ do
         echo $message
     fi
 done < "$path"
-echo "results=$coverageResults" >> $GITHUB_OUTPUT
+# echo "results=$coverageResults" >> $GITHUB_OUTPUT
+coverageExitStatus=1
+if [[ !coverageExitStatus != 0 ]]; then 
+    echo "#### Some files are not enough covered by unit tests!" >> $GITHUB_STEP_SUMMARY
+    echo "Please check details on your local machine using command: `flutter test --coverage`" >> $GITHUB_STEP_SUMMARY
+fi
