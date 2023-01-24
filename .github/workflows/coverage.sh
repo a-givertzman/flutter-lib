@@ -54,5 +54,5 @@ done < "$path"
 # echo "results=$coverageResults" >> $GITHUB_OUTPUT
 if [[ !coverageExitStatus != 0 ]]; then 
     echo "#### Some files are not enough covered by unit tests!" >> $GITHUB_STEP_SUMMARY
-    echo "Please check details on your local machine using command: `flutter test --coverage`" >> $GITHUB_STEP_SUMMARY
+    echo 'Please check details on your local machine using command: `flutter test --coverage`.' >> $GITHUB_STEP_SUMMARY
 fi
